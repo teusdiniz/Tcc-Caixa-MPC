@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8" />
+  <title>Caixa MPC - Confirmar devolução</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  {% load static %}
+  <link href="{% static 'css/styles.css' %}" rel="stylesheet">
+  <link rel="icon" href="{% static 'img/favicon.ico' %}">
+</head>
+<body>
+  <div class="bg bg-devolucao bg-devolucao-vignette">
+    <header class="topbar">
+      <img src="{% static 'img/logo_monk.jpg' %}" alt="Logo" class="logo">
+    </header>
+
+    <main class="center" style="gap:22px">
+      <h1 class="title">Confirmar devolução</h1>
+
+      <div class="drawers">
+        {% for grupo in grupos %}
+          <section class="drawer">
+            <header class="drawer-head">
+              <h3>{{ grupo.gaveta }}</h3>
+            </header>
+            <div class="tools-grid">
+              {% for it in grupo.itens %}
+                <div class="tool-card selected">
+                  <span class="tool-name">{{ it.nome }}</span>
+                  <span class="checkmark" aria-hidden="true">✓</span>
+                </div>
+              {% endfor %}
+            </div>
+          </section>
+        {% endfor %}
+      </div>
+
+      <!-- IMPORTANTE: data-* com sessao e gaveta -->
+      <form id="formConfirmar"
+            data-sessao-id="{{ sessao_id }}"
+            data-gaveta-numero="{{ gaveta_numero }}">
+        <div class="actions">
+          <!-- precisa passar o sessao_id -->
+          <a class="btn btn-cancelar"
+             href="{% url 'devolver' sessao_id=sessao_id %}">Voltar</a>
+
+          <button type="submit" class="btn btn-devolver">Confirmar devolução</button>
+        </div>
+      </form>
+    </main>
+
+    <div class="clock" id="clock"></div>
+  </div>
+
+  <script src="{% static 'js/devolver_confirmar.js' %}"></script>
+</body>
+</html>

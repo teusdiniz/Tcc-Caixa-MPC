@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8" />
+  <title>Caixa MPC - Painel</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  {% load static %}
+  <link href="{% static 'css/styles.css' %}" rel="stylesheet">
+  <link rel="icon" href="{% static 'img/favicon.ico' %}">
+</head>
+<body>
+  <div class="bg">
+    <header class="topbar">
+      <img src="{% static 'img/logo_monk.jpg' %}" alt="Logo" class="logo">
+    </header>
+
+    <!-- PASSANDO sessao_id e gaveta_atual em data-* -->
+    <main class="center"
+          data-sessao-id="{{ sessao_id }}"
+          data-gaveta-atual="{{ gaveta_atual|default_if_none:'' }}">
+      <h1 class="title">Caixa MPC</h1>
+
+      <!-- chip de status -->
+      <div class="chip-ok">
+        <span class="dot"></span>
+        <span class="ok-text">Acesso liberado</span>
+        <span class="dot"></span>
+      </div>
+
+      <p class="subtitle" style="margin-top:10px">{{ funcionario }}</p>
+
+      <p class="subtitle" style="margin-top:18px;font-weight:700">
+        Selecione a opção desejada:
+      </p>
+
+      <!-- botões RETIRAR / DEVOLVER -->
+      <div class="actions">
+        <a class="btn btn-retirar"
+           href="{% url 'retirar' sessao_id=sessao_id %}">RETIRAR</a>
+
+        <a class="btn btn-devolver" href="{% url 'devolver' sessao_id=sessao_id %}">DEVOLVER</a>
+      </div>
+
+      <!-- botão de CONFIRMAR RETIRADA (sem número no texto) -->
+      {% if gaveta_atual %}
+        <div class="actions" style="margin-top:24px">
+          <button
+            id="btnConfirmarRetirada"
+            class="btn btn-retirar"
+            data-sessao-id="{{ sessao_id }}"
+            data-gaveta-numero="{{ gaveta_atual }}">
+            Confirmar retirada da gaveta
+          </button>
+        </div>
+      {% endif %}
+    </main>
+
+    <footer class="footer footer-row">
+      <a class="btn btn-cancelar" href="{% url 'home' %}">Cancelar</a>
+      <span id="clock"></span>
+    </footer>
+  </div>
+
+  <script src="{% static 'js/painel.js' %}?v=4"></script>
+</body>
+</html>

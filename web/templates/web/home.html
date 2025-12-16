@@ -1,0 +1,56 @@
+{% load static %}
+<!doctype html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8" />
+  <title>Caixa MPC</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- CSS principal -->
+  <link href="{% static 'css/styles.css' %}" rel="stylesheet">
+  <link rel="icon" href="{% static 'img/favicon.ico' %}">
+</head>
+<body>
+  <div class="bg">
+    <header class="topbar">
+      <img src="{% static 'img/logo_monk.jpg' %}" alt="Logo" class="logo">
+    </header>
+
+    <main class="center">
+      <h1 class="title">Caixa MPC</h1>
+
+      <p class="subtitle" style="margin-top: 18px;">
+        Aproxime o cartão NFC no leitor para iniciar.
+      </p>
+
+      <p class="subtitle" style="margin-top: 8px; font-size: 0.9rem; opacity: 0.8;">
+        Aguardando usuário...
+      </p>
+    </main>
+
+    <footer class="footer footer-row">
+      <span id="clock"></span>
+    </footer>
+  </div>
+
+  <!-- Relógio simples (opcional) -->
+  <script>
+    (function() {
+      const el = document.getElementById("clock");
+      if (!el) return;
+      const pad = n => String(n).padStart(2, "0");
+      function tick() {
+        const d = new Date();
+        el.textContent =
+          `${pad(d.getDate())}/${pad(d.getMonth() + 1)}/${d.getFullYear()} ` +
+          `${pad(d.getHours())}:${pad(d.getMinutes())}:${pad(d.getSeconds())}`;
+      }
+      tick();
+      setInterval(tick, 1000);
+    })();
+  </script>
+
+  <!-- JS que fica perguntando /api/status-frontend/ e redireciona pro painel -->
+  <script src="{% static 'js/home.js' %}?v=2"></script>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8" />
+  <title>Caixa MPC - Acesso negado</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  {% load static %}
+  <link href="{% static 'css/styles.css' %}" rel="stylesheet">
+  <link rel="icon" href="{% static 'img/favicon.ico' %}">
+</head>
+<body>
+  <div class="bg">
+    <header class="topbar">
+      <img src="{% static 'img/logo_monk.jpg' %}" alt="Logo" class="logo">
+    </header>
+
+    <main class="center">
+      <h1 class="title">Caixa MPC</h1>
+
+      <p class="warn-title">Usuário não cadastrado/identificado</p>
+
+      <!-- Ícone RFID -->
+      <div class="rfid-icon" aria-hidden="true">
+        <svg width="260" height="200" viewBox="0 0 260 200">
+          <circle cx="80" cy="100" r="16" stroke="white" stroke-width="6" fill="none"/>
+          <path d="M110,70 A60,60 0 0 1 110,130" stroke="white" stroke-width="6" fill="none"/>
+          <path d="M140,50 A90,90 0 0 1 140,150" stroke="white" stroke-width="6" fill="none"/>
+          <path d="M170,30 A120,120 0 0 1 170,170" stroke="white" stroke-width="6" fill="none"/>
+        </svg>
+      </div>
+
+      <!-- chip vermelho -->
+      <div class="chip-bad">
+        <span class="dot"></span>
+        <span class="bad-text">Acesso Negado</span>
+        <span class="dot"></span>
+      </div>
+
+      <p class="subtitle" style="margin-top:12px">Tente novamente</p>
+      <p class="subtitle" style="opacity:.7">UID lido: {{ uid }}</p>
+
+      <div style="margin-top:18px">
+        <a class="btn btn-cancelar" href="{% url 'reset' %}">Voltar</a>
+      </div>
+    </main>
+
+    <div class="clock" id="clock"></div>
+  </div>
+
+  <script src="{% static 'js/main.js' %}?v=4"></script>
+</body>
+</html>

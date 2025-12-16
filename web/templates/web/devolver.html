@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8" />
+  <title>Caixa MPC - Devolver ferramentas</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  {% load static %}
+  <link href="{% static 'css/styles.css' %}" rel="stylesheet">
+  <link rel="icon" href="{% static 'img/favicon.ico' %}">
+</head>
+<body>
+  <div class="bg bg-devolucao bg-devolucao-vignette">
+    <header class="topbar">
+      <img src="{% static 'img/logo_monk.jpg' %}" alt="Logo" class="logo">
+    </header>
+
+    <!-- Expondo o sessao_id pro JS -->
+    <main class="center" style="gap:22px" data-sessao-id="{{ sessao_id }}">
+      <h1 class="title">Selecione a(s) ferramenta(s) para devolver</h1>
+
+      {% if vazio %}
+        <p class="subtitle">Você não possui itens emprestados.</p>
+        <div class="actions">
+          <a class="btn btn-devolver" href="{% url 'painel' sessao_id=sessao_id %}">Voltar</a>
+        </div>
+      {% else %}
+        <div class="drawers" id="lista">
+          {% for grupo in grupos %}
+            <section class="drawer">
+              <header class="drawer-head">
+                <h3>{{ grupo.gaveta }}</h3>
+              </header>
+              <div class="tools-grid">
+                {% for it in grupo.itens %}
+                  <div class="tool-card"
+                       data-id="{{ it.id }}"
+                       role="button"
+                       tabindex="0"
+                       aria-pressed="false">
+                    <span class="tool-name">{{ it.nome }}</span>
+                    <span class="checkmark" aria-hidden="true">✓</span>
+                  </div>
+                {% endfor %}
+              </div>
+            </section>
+          {% endfor %}
+        </div>
+
+        <div class="actions">
+          <a href="{% url 'painel' sessao_id=sessao_id %}" class="btn btn-cancelar">
+            Cancelar
+          </a>
+          <button class="btn btn-devolver" id="btnAvancar">
+            Próximo
+          </button>
+        </div>
+      {% endif %}
+    </main>
+
+    <div class="clock" id="clock"></div>
+  </div>
+
+  <script src="{% static 'js/devolver.js' %}?v=2"></script>
+</body>
+</html>
