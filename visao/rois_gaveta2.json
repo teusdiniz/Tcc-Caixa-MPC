@@ -1,0 +1,29 @@
+[
+  {
+    "nome": "Allien azul",
+    "coords": [
+      388,
+      275,
+      165,
+      502
+    ]
+  },
+  {
+    "nome": "Allien vermelho",
+    "coords": [
+      831,
+      286,
+      186,
+      500
+    ]
+  },
+  {
+    "nome": "Allien verde",
+    "coords": [
+      1315,
+      300,
+      172,
+      489
+    ]
+  }
+]

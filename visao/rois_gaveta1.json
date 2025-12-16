@@ -1,0 +1,29 @@
+[
+  {
+    "nome": "Alicate de corte",
+    "coords": [
+      80,
+      259,
+      432,
+      562
+    ]
+  },
+  {
+    "nome": "Alicate de bico",
+    "coords": [
+      634,
+      164,
+      616,
+      670
+    ]
+  },
+  {
+    "nome": "Alicate de corte zero",
+    "coords": [
+      1336,
+      254,
+      502,
+      528
+    ]
+  }
+]

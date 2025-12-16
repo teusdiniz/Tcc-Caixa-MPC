@@ -1,0 +1,61 @@
+{
+  "timestamp": 1763510210,
+  "usuario": null,
+  "gaveta_id": null,
+  "imagem_saida": "saida_gaveta3.jpg",
+  "ref": "ref_vazia_gaveta3.jpg",
+  "rois": "rois_gaveta3.json",
+  "detalhes": {
+    "Multimetro": {
+      "presente": false,
+      "rect": [
+        245,
+        233,
+        172,
+        301
+      ],
+      "ssim": 0.06474437053532023,
+      "edge": 0.3387159082129336,
+      "ref_edge": 0.33135671791702076,
+      "delta_edge": 0.007359190295912865,
+      "diff_mean": 0.27929382677895387,
+      "hist_corr": 0.9977449845266813
+    },
+    "Kit de chave": {
+      "presente": true,
+      "rect": [
+        567,
+        197,
+        173,
+        378
+      ],
+      "ssim": 0.024159690825074655,
+      "edge": 0.21315411199804263,
+      "ref_edge": 0.35081200110101846,
+      "delta_edge": 0.0,
+      "diff_mean": 0.2908988472288937,
+      "hist_corr": 0.14047732364049595
+    },
+    "Faça": {
+      "presente": true,
+      "rect": [
+        889,
+        234,
+        99,
+        254
+      ],
+      "ssim": 0.021159988152509305,
+      "edge": 0.3129324743497972,
+      "ref_edge": 0.2890320528115804,
+      "delta_edge": 0.02390042153821681,
+      "diff_mean": 0.2965210231074057,
+      "hist_corr": 0.9961184592885802
+    }
+  },
+  "retiradas": [
+    "Kit de chave",
+    "Faça"
+  ],
+  "esperada": "",
+  "ok": null
+}
