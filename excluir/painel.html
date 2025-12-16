@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8" />
+  <title>Caixa MPC - Painel</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  {% load static %}
+  <link href="{% static 'css/styles.css' %}" rel="stylesheet">
+  <link rel="icon" href="{% static 'img/favicon.ico' %}">
+</head>
+<body>
+  <div class="bg">
+    <header class="topbar">
+      <img src="{% static 'img/logo_monk.jpg' %}" alt="Logo" class="logo">
+    </header>
+
+    <main class="center">
+      <h1 class="title">Caixa MPC</h1>
+
+      <!-- chip de status -->
+      <div class="chip-ok">
+        <span class="dot"></span>
+        <span class="ok-text">Acesso liberado</span>
+        <span class="dot"></span>
+      </div>
+
+      <p class="subtitle" style="margin-top:10px">{{ funcionario }}</p>
+
+      <p class="subtitle" style="margin-top:18px;font-weight:700">Selecione a opção desejada:</p>
+
+      <!-- botões de ação -->
+      <div class="actions">
+        <a class="btn btn-retirar" href="{% url 'retirar' %}">RETIRAR</a>
+        <!-- CORRIGIDO: vai para /devolver -->
+        <a class="btn btn-devolver" href="{% url 'devolver' %}">DEVOLVER</a>
+      </div>
+    </main>
+
+    <footer class="footer footer-row">
+      <a class="btn btn-cancelar" href="{% url 'reset' %}">Cancelar</a>
+      <span id="clock"></span>
+    </footer>
+  </div>
+
+  <script src="{% static 'js/main.js' %}?v=3"></script>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8" />
+  <title>Caixa MPC - Liberando gaveta</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  {% load static %}
+  <link href="{% static 'css/styles.css' %}" rel="stylesheet">
+  <link rel="icon" href="{% static 'img/favicon.ico' %}">
+</head>
+<body>
+  <!-- fundo vermelho com vinheta -->
+  <div class="bg bg-retirada bg-retirada-vignette">
+    <header class="topbar">
+      <img src="{% static 'img/logo_monk.jpg' %}" alt="Logo" class="logo">
+    </header>
+
+    <main class="center" style="gap:22px">
+      <h1 class="title">Caixa MPC</h1>
+
+      <!-- Chip azul: Liberando gaveta -->
+      <div class="chip-info">
+        <span class="dot"></span>
+        <span class="info-text">Liberando gaveta</span>
+        <span class="dot"></span>
+      </div>
+
+      <p class="subtitle" style="margin-top:12px">Pegue suas ferramentas selecionadas</p>
+      <p class="subtitle" style="font-weight:800">Feche a gaveta ao finalizar retirada</p>
+
+      <div class="actions">
+        <a class="btn btn-cancelar" href="{% url 'retirar_revisao' %}">Voltar</a>
+        <button class="btn btn-devolver" id="btnOk">Confirmar retirada</button>
+      </div>
+    </main>
+
+    <div class="clock" id="clock"></div>
+  </div>
+
+  <script src="{% static 'js/gaveta.js' %}?v=1"></script>
+</body>
+</html>

@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8" />
+  <title>Caixa MPC - Confirmar retirada</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  {% load static %}
+  <link href="{% static 'css/styles.css' %}" rel="stylesheet">
+  <link rel="icon" href="{% static 'img/favicon.ico' %}">
+</head>
+<body>
+  <!-- fundo vermelho com vinheta -->
+  <div class="bg bg-retirada bg-retirada-vignette">
+    <header class="topbar">
+      <img src="{% static 'img/logo_monk.jpg' %}" alt="Logo" class="logo">
+    </header>
+
+    <main class="center" style="gap:22px">
+      <h1 class="title">Ferramenta(s) selecionada(s)</h1>
+
+      <div class="drawers">
+        {% for grupo in grupos %}
+          <section class="drawer">
+            <header class="drawer-head">
+              <h3>{{ grupo.gaveta }}</h3>
+            </header>
+            <div class="tools-grid">
+              {% for it in grupo.itens %}
+                <div class="tool-card selected" aria-pressed="true">
+                  <span class="tool-name">{{ it.nome }}</span>
+                  <span class="checkmark" aria-hidden="true">✓</span>
+                </div>
+              {% endfor %}
+            </div>
+          </section>
+        {% endfor %}
+      </div>
+
+      <form action="{% url 'retirar_finalizar' %}" method="post">
+        <div class="actions">
+          <a class="btn btn-cancelar" href="{% url 'retirar' %}">Cancelar</a>
+          <button type="submit" class="btn btn-devolver">Confirmar retirada</button>
+        </div>
+      </form>
+    </main>
+
+    <div class="clock" id="clock"></div>
+  </div>
+
+  <script>
+    // relógio simples
+    (function(){
+      const el=document.getElementById('clock'); if(!el) return;
+      const pad=n=>String(n).padStart(2,'0');
+      const tick=()=>{
+        const d=new Date();
+        el.textContent=`${pad(d.getDate())}/${pad(d.getMonth()+1)}/${d.getFullYear()}   ${pad(d.getHours())}:${pad(d.getMinutes())}:${pad(d.getSeconds())}`;
+      }
+      tick(); setInterval(tick,1000);
+    })();
+
+    // atalhos
+    document.addEventListener("keydown", (ev)=>{
+      if (ev.key === "Enter") document.querySelector("form").submit();
+      if (ev.key === "Escape") window.location.assign("{% url 'retirar' %}");
+    });
+  </script>
+</body>
+</html>

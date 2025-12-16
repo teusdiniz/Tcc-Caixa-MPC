@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8" />
+  <title>Caixa MPC - Escolha de ferramentas</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  {% load static %}
+  <link href="{% static 'css/styles.css' %}" rel="stylesheet">
+  <link rel="icon" href="{% static 'img/favicon.ico' %}">
+</head>
+<body>
+  <div class="bg bg-retirada">
+    <header class="topbar">
+      <img src="{% static 'img/logo_monk.jpg' %}" alt="Logo" class="logo">
+    </header>
+
+    <!-- IMPORTANTE: data-sessao-id vai ser lido pelo JS -->
+    <main class="center" style="gap:22px" data-sessao-id="{{ sessao_id }}">
+      <h1 class="title">Escolha a(s) ferramenta(s)</h1>
+
+      <!-- lista de gavetas -->
+      <div class="drawers">
+        {% for nome_gaveta, itens in gavetas %}
+          <section class="drawer">
+            <header class="drawer-head">
+              <h3>{{ nome_gaveta }}</h3>
+            </header>
+
+            <div class="tools-grid">
+              {% for item in itens %}
+                <button
+                  class="tool-card"
+                  data-id="{{ item.id }}"
+                  type="button"
+                  aria-pressed="false">
+                  <span class="tool-name">{{ item.nome }}</span>
+                  <span class="checkmark" aria-hidden="true">✓</span>
+                </button>
+              {% endfor %}
+            </div>
+          </section>
+        {% endfor %}
+      </div>
+
+      <!-- ações -->
+      <div class="actions">
+        <!-- CORRIGIDO: painel precisa do sessao_id -->
+        <a class="btn btn-cancelar" href="{% url 'painel' sessao_id=sessao_id %}">Cancelar</a>
+        <button class="btn btn-devolver" id="btnNext" disabled>Próximo</button>
+      </div>
+    </main>
+
+    <div class="clock" id="clock"></div>
+  </div>
+
+  <script src="{% static 'js/retirar.js' %}?v=2"></script>
+</body>
+</html>
